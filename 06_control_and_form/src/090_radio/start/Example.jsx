@@ -1,10 +1,25 @@
+import { useState } from "react";
 const Example = () => {
+  const [fruit, setFruit] = useState("apple");
+  const onChange = (e) => setFruit(e.target.value);
+  const RADIO_CORRECTION = ["Apple", "Banana", "Cherry"];
   return (
-    <p style={{ textAlign: "center" }}>
-      startフォルダの内容が表示されます。
-      <br />
-      練習用に使ってください！
-    </p>
+    <>
+      {RADIO_CORRECTION.map((value) => {
+        return (
+          <label key={value}>
+            <input
+              type="radio"
+              value={value}
+              checked={fruit === value}
+              onChange={onChange}
+            />
+            {value}
+          </label>
+        );
+      })}
+      <h2>I wanna eat {fruit}</h2>
+    </>
   );
 };
 
