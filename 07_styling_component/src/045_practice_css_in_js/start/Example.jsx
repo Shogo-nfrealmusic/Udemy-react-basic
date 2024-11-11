@@ -7,27 +7,26 @@ const FirstButton = styled.button`
   margin: 0.5rem 1rem;
   width: 11rem;
   border: none;
+  background-color: pink;
+`;
+
+const SecondButton = styled(FirstButton)`
+  color: white;
+  background-color: red;
+`;
+
+const ThirdButton = styled(SecondButton)`
+  background: ${(props) => props.dard ? "black" : "green"};
 `;
 
 const Example = () => {
   return (
     <>
-      <h3>練習問題</h3>
-      <p>
-        記述を変更し、完成コードと同じ状態になるようにしてください。
-        <ul>
-          <li>Q1. FirstButtonのbackgroudをpinkにしてください。</li>
-          <li>
-            Q2.
-            FirstButtonを継承したSecondButtonを作成し、backgroudをredに、colorをwhiteにしてください。{" "}
-          </li>
-          <li>
-            Q3.
-            SecondButtonを継承したThirdButtonを作成し、props.darkがある場合のみbackgroudがblackに、ない場合はgreenになるようにしてください。
-          </li>
-        </ul>
-      </p>
-      <FirstButton>ボタン1</FirstButton>
+     <FirstButton>Button1</FirstButton>
+     <SecondButton>Button2</SecondButton>
+    <ThirdButton dard>Button3</ThirdButton>     
+    {/* <ThirdButton >Button3</ThirdButton>      */}
+
     </>
   );
 };
