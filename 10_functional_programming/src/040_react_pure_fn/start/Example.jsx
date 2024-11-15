@@ -1,7 +1,12 @@
+const Child = () => {
+
+}
+
 const Example = () => {
 
   return (
     <>
+      <Child />
     </>
   );
 };
