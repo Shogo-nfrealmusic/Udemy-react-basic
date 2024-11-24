@@ -8,7 +8,7 @@ const Example = () => {
     window.setInterval(() => {
       setTime(prev => prev + 1);
     }, 1000);
-  }, [])
+  }, []);
   
   return (
     <h3>
