@@ -1,6 +1,26 @@
+import { useEffect } from "react";
+
 const Example = () => {
+  const [state, setState] = useState(0);
+  useEffect(
+    function update() {
+      console.log("update");
+      return function cleanup() {
+        console.log("cleanup");
+      }
+    },
+    [state]
+  );
+  useEffect(() => {
+    console.log("mount");
+    return () => {
+      console.log("unmount");
+    };
+    }, []);
   return (
-    <h3>useEffectの呼ばれるタイミングをコンソールで確認してみよう</h3>
+   <>
+    <button onClick={() => setState((prev) => prev + 1)}>update</button>
+   </>
   );
 };
 

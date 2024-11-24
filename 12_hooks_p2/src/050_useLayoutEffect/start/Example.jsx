@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect,useLayoutEffect, useState } from "react";
 const Example = () => {
   const [isDisp, setIsDisp] = useState(true);
 
@@ -12,7 +12,7 @@ const Example = () => {
 const Timer = () => {
   const [time, setTime] = useState(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // console.log('init');
     let intervalId = null;
     intervalId = window.setInterval(() => {
