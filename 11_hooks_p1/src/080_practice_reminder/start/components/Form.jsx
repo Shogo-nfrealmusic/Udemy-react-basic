@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatchTodos } from "../context/TodoContext";
-const Form = () => {
+const Form = ({ createTodo }) => {
   const [enteredTodo, setEnteredTodo] = useState("");
   const dispatch = useDispatchTodos();
 
@@ -10,10 +10,11 @@ const Form = () => {
     const newTodo = {
       id: Math.floor(Math.random() * 1e5),
       content: enteredTodo,
-      edit: false,
+      editing: false
     };
 
-    dispatch({ type: "todo/add", todo: newTodo, edit: false });
+    // 2023/10 修正editingがundefinedになるためediting: falseを追加
+    dispatch({ type: 'todo/add', todo: newTodo, editing: false });
 
     setEnteredTodo("");
   };
