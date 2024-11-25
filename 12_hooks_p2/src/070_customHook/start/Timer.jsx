@@ -1,19 +1,6 @@
-import { useEffect, useState, useLayoutEffect } from "react";
-
-// POINT  useEffectの実行順を意識した実装。タイマー機能の拡張
-const Example = () => {
-  const [isDisp, setIsDisp] = useState(true);
-
-  return (
-    <>
-      {isDisp && <Timer/>}
-      <button onClick={() => setIsDisp(prev => !prev)}>{isDisp ? '非表示' : '表示'}</button>
-    </>
-  )
-}
-
-const Timer = () => {
-  const [time, setTime] = useState(0);
+import { useState, useEffect, useLayoutEffect } from 'react';
+const useTimer = () => {
+    const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
@@ -39,7 +26,7 @@ const Timer = () => {
     // // console.log('updated');
     
     document.title = 'counter:' + time;
-    window.localStorage.setItem('time-key-end', time);
+    window.localStorage.setItem('time-key', time);
 
     return () => {
       // debugger
@@ -48,7 +35,7 @@ const Timer = () => {
   }, [time]);
 
   useLayoutEffect(() => {
-    const _time = parseInt(window.localStorage.getItem('time-key-end'));
+    const _time = parseInt(window.localStorage.getItem('time-key'));
     if(!isNaN(_time)) {
       setTime(_time);
     }
@@ -62,19 +49,7 @@ const Timer = () => {
     setTime(0);
     setIsRunning(false);
   }
+  return {time, isRunning, toggle, reset};
+}
 
-  return (
-    <>
-    <h3>
-      <time>{time}</time>
-      <span>秒経過</span>
-    </h3>
-    <div>
-      <button onClick={toggle}>{isRunning ? '一時停止' : 'スタート'}</button>
-      <button onClick={reset}>リセット</button>
-    </div>
-    </>
-    );
-};
-
-export default Example;
+export default useTimer;
