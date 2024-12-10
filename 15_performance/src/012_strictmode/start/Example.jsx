@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, StrictMode } from "react";
 import "./Example.css";
-import { StrictMode } from "react";
 
 const StrictComp = () => {
   return (
