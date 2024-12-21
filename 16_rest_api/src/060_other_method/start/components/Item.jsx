@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatchTodos } from "../context/TodoContext";
+import todoApi from "../api/todo";
 
 const Item = ({ todo }) => {
   const [editingContent, setEditingContent] = useState(todo.content);
@@ -9,8 +10,9 @@ const Item = ({ todo }) => {
 
   const toggleEditMode = () => {
     const newTodo = { ...todo, editing: !todo.editing };
+    todoApi.patch(newTodo).then(() => {
     dispatch({ type: 'todo/update', todo: newTodo });
-  };
+  })};
 
   const confirmContent = (e) => {
     e.preventDefault();
@@ -19,11 +21,15 @@ const Item = ({ todo }) => {
       editing: !todo.editing,
       content: editingContent,
     };
-    dispatch({ type: 'todo/update', todo: newTodo });
+    todoApi.patch(newTodo).then(() => {
+      dispatch({ type: 'todo/update', todo: newTodo });
+    })
   };
 
   const complete = (todo) => {
-    dispatch({ type: "todo/delete", todo });
+    todoApi.delete(todo).then(() => {
+      dispatch({ type: "todo/delete", todo });
+    })
   };
 
   return (
