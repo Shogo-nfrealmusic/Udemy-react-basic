@@ -3,9 +3,30 @@
 import { ENDPOINT } from "@/constants";
 
 export async function GET() {
-
+    const data = await fetch(ENDPOINT).then(res => res.json())
+    return Response.json(data)
 }
 
 export async function POST(request) {
+    const formData = await request.formData();
+    const id = formData.get('id');
+    const title = formData.get('title');
 
+    if (!id || !title) {
+        return new Response(JSON.stringify({ msg: 'vacant' }), { status: 500 });
+    }    
+
+    try{
+        const res = await fetch(ENDPOINT, { 
+            method: 'POST', 
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id, title })
+    });
+        const data = await res.json();
+        return Response.json(data);
+    } catch(e) {
+        return new Response.json({ msg: 'error' }, { status: 500 })
+    }
 }
