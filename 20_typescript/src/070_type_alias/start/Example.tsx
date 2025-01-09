@@ -1,5 +1,9 @@
 const Example = () => {
-  // 練習用
+  type User = {
+    name: string,
+    age: number
+  }
+  const user: User = { name: 'shogo', age: 20 }
 };
 
 export default Example;
