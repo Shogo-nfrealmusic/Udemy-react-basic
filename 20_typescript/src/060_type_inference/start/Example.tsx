@@ -1,5 +1,6 @@
 const Example = () => {
-  // 練習用
+  let str = "hello";
+  console.log(str)
 };
 
 export default Example;
