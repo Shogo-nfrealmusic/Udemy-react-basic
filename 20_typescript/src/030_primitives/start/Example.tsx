@@ -19,6 +19,9 @@ const Example = () => {
   console.log(undefinedValue);
   console.log(trueVal);
 
+  let bool1: boolean = false;
+  console.log(bool1)
+
 
 };
 
